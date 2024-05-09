@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URL Form</title>
+</head>
+<body>
+  <form id="urlForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <br>
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year">
+    <br>
+    <button type="submit" id="button">Generate URL</button>
+  </form>
+  <h3 id="url">https://localhost:8080/</h3>
 
-	<h3 id="url">https://localhost:8080/</h3>
-	<form>
-		<label for="name">Name: </label><br><br>
-	<input type="text" id="name" name="name"> 
-    <br><br>
-	<label for="name">Number: </label> <br><br>
-	<input type="number" id="year" name="year">
-		   <br><br>
-	<input type="submit">
-</form>
+  <script>
+    document.getElementById('urlForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get values from form inputs
+      const name = document.getElementById('name').value;
+      const year = document.getElementById('year').value;
+
+      // Construct URL with query string
+      const url = `https://localhost:8080/?name=${encodeURIComponent(name)}&year=${encodeURIComponent(year)}`;
+
+      // Update the text of h3 element
+      document.getElementById('url').textContent = url;
+    });
+  </script>
+</body>
 </html>
